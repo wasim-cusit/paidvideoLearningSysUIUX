@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning – Student – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .welcome-banner { background: linear-gradient(135deg, var(--accent-muted) 0%, transparent 100%); border: 1px solid var(--accent-strong); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 32px; }
+    .welcome-banner h2 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 4px; }
+    .continue-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 32px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .continue-card-thumb { width: 200px; height: 112px; border-radius: var(--radius-md); overflow: hidden; background: var(--bg-elevated); flex-shrink: 0; }
+    .continue-card-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .continue-card-body { flex: 1; min-width: 200px; }
+    .continue-card-body h3 { font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 8px; }
+    .continue-card-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Student</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Learning</div>
+          <a href="index.html" class="active"><span class="icon">📚</span> My learning</a>
+          <a href="purchase-history.html"><span class="icon">🧾</span> Purchase history</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Account</div>
+          <a href="profile.html"><span class="icon">👤</span> Profile</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>My learning</h1>
+        </div>
+        <div class="panel-header-actions">
+          <div class="panel-user">
+            <div class="panel-user-avatar">JD</div>
+            <span>John Doe</span>
+          </div>
+          <a href="../courses.html" class="btn btn-primary">Browse courses</a>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="welcome-banner">
+          <h2>Welcome back, John</h2>
+          <p>Continue your last course or start something new.</p>
+        </div>
+        <div class="panel-card" style="margin-bottom: 24px;">
+          <div class="panel-card-header">
+            <h2>How course access works</h2>
+          </div>
+          <div style="padding: 24px;">
+            <p style="color: var(--text-secondary); margin-bottom: 12px;">Courses you haven’t purchased are <strong style="color: var(--text-muted);">locked</strong>: you’ll see a preview on the course page but won’t be able to watch lessons until you buy. After you pay once, the course is <strong style="color: var(--success);">unlocked</strong> for life and appears here in My learning.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">On the catalog, locked courses show a 🔒 Locked badge; ones you own show ✓ Owned.</p>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <h3 class="section-title">Your progress</h3>
+          <p class="section-subtitle" style="margin-bottom: 0;">1 of 24 lessons completed in Web Development Bootcamp</p>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 4%;"></div>
+          </div>
+        </div>
+
+        <div class="continue-card">
+          <div class="continue-card-thumb">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=225&fit=crop" alt="">
+          </div>
+          <div class="continue-card-body">
+            <h3>Complete Web Development Bootcamp</h3>
+            <p>Last watched: Lesson 1 – Introduction & setup</p>
+            <a href="../course-detail.html?id=1" class="btn btn-primary">Continue</a>
+          </div>
+        </div>
+
+        <h3 class="section-title">All my courses</h3>
+        <div class="course-grid">
+          <a href="../course-detail.html?id=1" class="course-card">
+            <div class="course-card-thumb">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=225&fit=crop" alt="">
+              <span class="badge">In progress</span>
+            </div>
+            <div class="course-card-body">
+              <h3 class="course-card-title">Complete Web Development Bootcamp</h3>
+              <div class="course-card-meta">1/24 · 4% complete</div>
+              <div class="course-card-footer"><span style="color: var(--success); font-weight: 500;">Continue</span></div>
+            </div>
+          </a>
+          <a href="../course-detail.html?id=2" class="course-card">
+            <div class="course-card-thumb">
+              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=225&fit=crop" alt="">
+            </div>
+            <div class="course-card-body">
+              <h3 class="course-card-title">Python for Data Science & ML</h3>
+              <div class="course-card-meta">0/18 lessons</div>
+              <div class="course-card-footer"><span style="color: var(--accent); font-weight: 500;">Start</span></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="section">
+          <a href="../courses.html" class="btn btn-secondary">Discover more courses</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

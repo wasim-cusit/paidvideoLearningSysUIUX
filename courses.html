@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses – LearnVault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Learn<span>Vault</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="courses.html#browse">Browse</a>
+        <a href="dashboard.html">My Learning</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container" id="browse">
+      <h1 class="section-title">All courses</h1>
+      <p class="section-subtitle">Pick a course, pay once, and get lifetime access.</p>
+
+      <div class="form-group mb-2" style="max-width: 320px;">
+        <label for="search">Search courses</label>
+        <input type="text" id="search" class="form-control" placeholder="e.g. Web, Python, Design">
+      </div>
+
+      <div class="course-grid" id="course-list">
+        <a href="course-detail.html?id=1" class="course-card" data-course-id="1">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=225&fit=crop" alt="Web Development">
+            <span class="badge badge-bestseller">Bestseller</span>
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Complete Web Development Bootcamp</h3>
+            <div class="course-card-meta">24 lessons · 12 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$49.99</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=2" class="course-card" data-course-id="2">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=225&fit=crop" alt="Python">
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Python for Data Science & ML</h3>
+            <div class="course-card-meta">18 lessons · 10 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$39.99</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=3" class="course-card" data-course-id="3">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=225&fit=crop" alt="UI/UX">
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">UI/UX Design from Zero to Hero</h3>
+            <div class="course-card-meta">20 lessons · 8 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$44.99</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=4" class="course-card" data-course-id="4">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop" alt="React">
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">React & Next.js Masterclass</h3>
+            <div class="course-card-meta">22 lessons · 11 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$54.99</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=5" class="course-card" data-course-id="5">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=225&fit=crop" alt="Mobile">
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Mobile App Development (Flutter)</h3>
+            <div class="course-card-meta">26 lessons · 14 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$59.99</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=6" class="course-card" data-course-id="6">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=225&fit=crop" alt="Analytics">
+            <span class="badge badge-locked" style="display:none;">🔒 Locked</span>
+            <span class="badge badge-owned" style="display:none;">✓ Owned</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Data Analytics with SQL & Excel</h3>
+            <div class="course-card-meta">16 lessons · 7 hrs</div>
+            <div class="course-card-footer">
+              <span class="course-card-price">$34.99</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+  <script src="js/owned-courses.js"></script>
+  <script>
+    (function() {
+      var owned = window.LearnVaultOwned && window.LearnVaultOwned.get();
+      document.querySelectorAll('#course-list .course-card[data-course-id]').forEach(function(card) {
+        var id = card.getAttribute('data-course-id');
+        var isOwned = owned && owned.indexOf(id) !== -1;
+        var locked = card.querySelector('.badge-locked');
+        var ownedBadge = card.querySelector('.badge-owned');
+        var bestseller = card.querySelector('.badge-bestseller');
+        if (locked) locked.style.display = isOwned ? 'none' : 'inline-block';
+        if (ownedBadge) ownedBadge.style.display = isOwned ? 'inline-block' : 'none';
+        if (bestseller && isOwned) bestseller.style.display = 'none';
+      });
+    })();
+    document.getElementById('search').addEventListener('input', function() {
+      var q = this.value.toLowerCase();
+      document.querySelectorAll('#course-list .course-card').forEach(function(card) {
+        var title = card.querySelector('.course-card-title').textContent.toLowerCase();
+        card.style.display = title.indexOf(q) !== -1 ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

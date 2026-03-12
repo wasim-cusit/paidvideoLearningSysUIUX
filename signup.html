@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up – LearnVault</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Learn<span>Vault</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Log in</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="auth-page">
+      <div class="auth-card">
+        <h1>Create your account</h1>
+        <p class="subtitle">Free to join. Pay only for the courses you want.</p>
+        <form id="signup-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="name">Full name</label>
+            <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="At least 8 characters" required minlength="8">
+          </div>
+          <button type="submit" class="btn btn-primary">Create account</button>
+        </form>
+        <p class="footer-link">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('signup-form').onsubmit = function() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var pass = document.getElementById('password').value;
+      if (!name || !email || !pass) return false;
+      if (pass.length < 8) { alert('Password must be at least 8 characters.'); return false; }
+      window.location.href = 'dashboard.html';
+      return false;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users – Admin – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Admin</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Overview</div>
+          <a href="index.html"><span class="icon">📊</span> Dashboard</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Manage</div>
+          <a href="courses.html"><span class="icon">📚</span> Courses</a>
+          <a href="users.html" class="active"><span class="icon">👥</span> Users</a>
+          <a href="teachers.html"><span class="icon">👨‍🏫</span> Teachers</a>
+          <a href="payments.html"><span class="icon">💳</span> Payments</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">System</div>
+          <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>Users</h1>
+        </div>
+        <div class="panel-header-actions">
+          <input type="text" class="form-control" placeholder="Search users..." style="width: 220px;">
+          <select class="form-control" style="width: 140px;">
+            <option>All roles</option>
+            <option>Students</option>
+            <option>Teachers</option>
+          </select>
+          <a href="#" class="btn btn-secondary">Export</a>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Total users</div>
+            <div class="value">1,284</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Students</div>
+            <div class="value">1,198</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Teachers</div>
+            <div class="value">86</div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="table-wrap">
+            <table class="panel-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Joined</th>
+                  <th>Courses</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="avatar-sm">JD</span> John Doe</td>
+                  <td>john@example.com</td>
+                  <td><span class="tag tag-muted">Student</span></td>
+                  <td>Mar 1, 2025</td>
+                  <td>3</td>
+                  <td><div class="actions"><a href="#">View</a><a href="#">Edit</a></div></td>
+                </tr>
+                <tr>
+                  <td><span class="avatar-sm">AR</span> Alex Rivera</td>
+                  <td>alex@example.com</td>
+                  <td><span class="tag tag-warning">Teacher</span></td>
+                  <td>Feb 15, 2025</td>
+                  <td>2</td>
+                  <td><div class="actions"><a href="#">View</a><a href="#">Edit</a></div></td>
+                </tr>
+                <tr>
+                  <td><span class="avatar-sm">AS</span> Anna Smith</td>
+                  <td>anna@example.com</td>
+                  <td><span class="tag tag-muted">Student</span></td>
+                  <td>Mar 5, 2025</td>
+                  <td>1</td>
+                  <td><div class="actions"><a href="#">View</a><a href="#">Edit</a></div></td>
+                </tr>
+                <tr>
+                  <td><span class="avatar-sm">JL</span> Jordan Lee</td>
+                  <td>jordan@example.com</td>
+                  <td><span class="tag tag-warning">Teacher</span></td>
+                  <td>Feb 20, 2025</td>
+                  <td>1</td>
+                  <td><div class="actions"><a href="#">View</a><a href="#">Edit</a></div></td>
+                </tr>
+                <tr>
+                  <td><span class="avatar-sm">MK</span> Mike Kim</td>
+                  <td>mike@example.com</td>
+                  <td><span class="tag tag-muted">Student</span></td>
+                  <td>Mar 10, 2025</td>
+                  <td>2</td>
+                  <td><div class="actions"><a href="#">View</a><a href="#">Edit</a></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – LearnVault</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .checkout-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 24px; }
+    .payment-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+    .payment-section h3 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 16px; }
+    .pay-btn { width: 100%; padding: 14px; margin-top: 8px; }
+    .secure-note { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.85rem; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Learn<span>Vault</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="checkout-title" style="padding-top: 32px;">Checkout</h1>
+
+      <div class="checkout-layout">
+        <div>
+          <div class="payment-section">
+            <h3>Contact & account</h3>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="you@example.com" value="">
+            </div>
+          </div>
+
+          <div class="payment-section">
+            <h3>Payment method</h3>
+            <div class="payment-methods">
+              <button type="button" class="payment-tab active" data-method="card">💳 Card</button>
+              <button type="button" class="payment-tab" data-method="paypal">PayPal</button>
+              <button type="button" class="payment-tab" data-method="bank">Bank</button>
+            </div>
+
+            <div id="form-card" class="payment-form active">
+              <div class="form-group">
+                <label for="card-name">Name on card</label>
+                <input type="text" id="card-name" class="form-control" placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label for="card-number">Card number</label>
+                <input type="text" id="card-number" class="form-control" placeholder="4242 4242 4242 4242" maxlength="19">
+              </div>
+              <div class="card-row">
+                <div class="form-group">
+                  <label for="card-exp">Expiry</label>
+                  <input type="text" id="card-exp" class="form-control" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div class="form-group">
+                  <label for="card-cvc">CVC</label>
+                  <input type="text" id="card-cvc" class="form-control" placeholder="123" maxlength="4">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="card-zip">Billing ZIP (optional)</label>
+                <input type="text" id="card-zip" class="form-control" placeholder="12345">
+              </div>
+            </div>
+
+            <div id="form-paypal" class="payment-form">
+              <p style="color: var(--text-secondary); margin-bottom: 16px;">You will be redirected to PayPal to complete payment securely.</p>
+              <button type="button" class="btn btn-secondary" style="width: 100%;">Continue with PayPal</button>
+            </div>
+
+            <div id="form-bank" class="payment-form">
+              <div class="form-group">
+                <label for="bank-iban">IBAN</label>
+                <input type="text" id="bank-iban" class="form-control" placeholder="DE89 3704 0044 0532 0130 00">
+              </div>
+              <div class="form-group">
+                <label for="bank-name">Account holder name</label>
+                <input type="text" id="bank-name" class="form-control" placeholder="John Doe">
+              </div>
+            </div>
+
+            <div class="secure-note">🔒 Payments are secure and encrypted. We never store your full card number.</div>
+          </div>
+        </div>
+
+        <aside class="order-summary">
+          <h3>Order summary</h3>
+          <div class="order-row">
+            <span id="summary-title">Complete Web Development Bootcamp</span>
+            <span id="summary-price">$49.99</span>
+          </div>
+          <div class="order-row">
+            <span>Tax (if applicable)</span>
+            <span>$0.00</span>
+          </div>
+          <div class="order-row total">
+            <span>Total</span>
+            <span id="summary-total">$49.99</span>
+          </div>
+          <button type="button" class="btn btn-primary pay-btn" id="pay-btn">Pay now</button>
+          <p class="footer-link mt-1" style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">By paying you agree to our Terms and Refund Policy.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+  <script src="js/owned-courses.js"></script>
+  <script>
+    (function() {
+      var params = new URLSearchParams(location.search);
+      var courseId = params.get('course') || '1';
+      var courses = {
+        '1': { title: 'Complete Web Development Bootcamp', price: 49.99 },
+        '2': { title: 'Python for Data Science & ML', price: 39.99 },
+        '3': { title: 'UI/UX Design from Zero to Hero', price: 44.99 },
+        '4': { title: 'React & Next.js Masterclass', price: 54.99 },
+        '5': { title: 'Mobile App Development (Flutter)', price: 59.99 },
+        '6': { title: 'Data Analytics with SQL & Excel', price: 34.99 }
+      };
+      var c = courses[courseId] || courses['1'];
+      document.getElementById('summary-title').textContent = c.title;
+      document.getElementById('summary-price').textContent = '$' + c.price.toFixed(2);
+      document.getElementById('summary-total').textContent = '$' + c.price.toFixed(2);
+
+      var tabs = document.querySelectorAll('.payment-tab');
+      var forms = document.querySelectorAll('.payment-form');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var method = this.getAttribute('data-method');
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          forms.forEach(function(f) { f.classList.remove('active'); });
+          this.classList.add('active');
+          var form = document.getElementById('form-' + method);
+          if (form) form.classList.add('active');
+        });
+      });
+
+      document.getElementById('card-number').addEventListener('input', function() {
+        var v = this.value.replace(/\D/g, '');
+        var g = v.match(/.{1,4}/g) || [];
+        this.value = g.join(' ').substr(0, 19);
+      });
+      document.getElementById('card-exp').addEventListener('input', function() {
+        var v = this.value.replace(/\D/g, '');
+        if (v.length >= 2) this.value = v.substr(0, 2) + '/' + v.substr(2, 2);
+        else this.value = v;
+      });
+
+      document.getElementById('pay-btn').addEventListener('click', function() {
+        var email = document.getElementById('email').value;
+        if (!email) { alert('Please enter your email.'); return; }
+        var activeTab = document.querySelector('.payment-tab.active');
+        if (activeTab && activeTab.getAttribute('data-method') === 'card') {
+          var name = document.getElementById('card-name').value;
+          var num = document.getElementById('card-number').value.replace(/\s/g, '');
+          var exp = document.getElementById('card-exp').value;
+          var cvc = document.getElementById('card-cvc').value;
+          if (!name || num.length < 15 || !exp || !cvc) {
+            alert('Please fill in all card details.');
+            return;
+          }
+        }
+        if (window.LearnVaultOwned && window.LearnVaultOwned.add) {
+          window.LearnVaultOwned.add(courseId);
+        }
+        window.location.href = 'course-detail.html?id=' + courseId + '&purchased=1';
+      });
+    })();
+  </script>
+</body>
+</html>

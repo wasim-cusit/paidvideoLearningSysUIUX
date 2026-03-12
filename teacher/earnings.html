@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings – Teacher – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Teacher</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Overview</div>
+          <a href="index.html"><span class="icon">📊</span> Dashboard</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Teaching</div>
+          <a href="courses.html"><span class="icon">📚</span> My courses</a>
+          <a href="course-create.html"><span class="icon">➕</span> Create course</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Earnings</div>
+          <a href="earnings.html" class="active"><span class="icon">💰</span> Earnings & payouts</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>Earnings & payouts</h1>
+        </div>
+        <div class="panel-header-actions">
+          <button class="btn btn-primary">Request payout</button>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Available balance</div>
+            <div class="value">$892.00</div>
+            <div class="change">Ready to withdraw</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Total earned</div>
+            <div class="value">$23,476</div>
+            <div class="change positive">All time</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Pending</div>
+            <div class="value">$124</div>
+            <div class="change">Clears in 7 days</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Next payout</div>
+            <div class="value">Mar 15</div>
+            <div class="change">Monthly</div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h2>Payout history</h2>
+            <select class="form-control" style="width: 140px;">
+              <option>All time</option>
+              <option>This month</option>
+              <option>Last 3 months</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="panel-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mar 1, 2025</td>
+                  <td>$1,240.00</td>
+                  <td>Bank transfer</td>
+                  <td><span class="tag tag-success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>Feb 1, 2025</td>
+                  <td>$1,089.50</td>
+                  <td>Bank transfer</td>
+                  <td><span class="tag tag-success">Paid</span></td>
+                </tr>
+                <tr>
+                  <td>Jan 1, 2025</td>
+                  <td>$987.00</td>
+                  <td>Bank transfer</td>
+                  <td><span class="tag tag-success">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h2>Recent sales</h2>
+            <a href="#" class="btn btn-ghost btn-secondary">Export</a>
+          </div>
+          <div class="table-wrap">
+            <table class="panel-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Course</th>
+                  <th>Student</th>
+                  <th>Your earning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mar 12, 2025</td>
+                  <td>Web Development Bootcamp</td>
+                  <td>John Doe</td>
+                  <td>$44.99</td>
+                </tr>
+                <tr>
+                  <td>Mar 11, 2025</td>
+                  <td>Web Development Bootcamp</td>
+                  <td>Anna Smith</td>
+                  <td>$44.99</td>
+                </tr>
+                <tr>
+                  <td>Mar 10, 2025</td>
+                  <td>React Masterclass</td>
+                  <td>Mike Kim</td>
+                  <td>$49.49</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

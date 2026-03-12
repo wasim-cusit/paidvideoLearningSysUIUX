@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning – LearnVault</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .welcome-banner { background: linear-gradient(135deg, var(--accent-muted) 0%, transparent 100%); border: 1px solid var(--accent-strong); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 32px; }
+    .welcome-banner h2 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 4px; }
+    .welcome-banner p { color: var(--text-secondary); font-size: 0.95rem; }
+    .my-courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .empty-state { text-align: center; padding: 60px 24px; background: var(--bg-card); border: 1px dashed var(--border); border-radius: var(--radius-lg); }
+    .empty-state h3 { font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 8px; }
+    .empty-state p { color: var(--text-secondary); margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Learn<span>Vault</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+      </nav>
+      <div class="header-actions">
+        <a href="student/index.html" class="btn btn-ghost">Student panel</a>
+        <span style="color: var(--text-secondary); font-size: 0.9rem;">Hi, Learner</span>
+        <a href="index.html" class="btn btn-ghost">Log out</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="dashboard-header">
+        <h1>My Learning</h1>
+        <p>Continue where you left off or start a new course.</p>
+      </div>
+
+      <div id="purchased-banner" class="welcome-banner" style="display: none;">
+        <h2>Thank you for your purchase!</h2>
+        <p>Your course is now in My Learning. Start watching below.</p>
+      </div>
+
+      <div class="progress-card">
+        <h3 class="section-title">Your progress</h3>
+        <p class="section-subtitle" style="margin-bottom: 0;">1 of 24 lessons completed in Web Development Bootcamp</p>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 4%;"></div>
+        </div>
+      </div>
+
+      <h3 class="section-title">My courses</h3>
+      <div class="my-courses-grid" id="my-courses">
+        <a href="course-detail.html?id=1" class="course-card">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=225&fit=crop" alt="Web Development">
+            <span class="badge">In progress</span>
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Complete Web Development Bootcamp</h3>
+            <div class="course-card-meta">1/24 lessons · 4% complete</div>
+            <div class="course-card-footer">
+              <span style="color: var(--success); font-weight: 500;">Continue</span>
+            </div>
+          </div>
+        </a>
+        <a href="course-detail.html?id=2" class="course-card">
+          <div class="course-card-thumb">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=225&fit=crop" alt="Python">
+          </div>
+          <div class="course-card-body">
+            <h3 class="course-card-title">Python for Data Science & ML</h3>
+            <div class="course-card-meta">0/18 lessons</div>
+            <div class="course-card-footer">
+              <span style="color: var(--accent); font-weight: 500;">Start course</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="section">
+        <h3 class="section-title">Discover more</h3>
+        <p class="section-subtitle">Add more courses to your library.</p>
+        <a href="courses.html" class="btn btn-secondary">Browse all courses</a>
+      </div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+  <script>
+    var params = new URLSearchParams(location.search);
+    if (params.get('purchased') === '1') {
+      document.getElementById('purchased-banner').style.display = 'block';
+      history.replaceState({}, '', 'dashboard.html');
+    }
+  </script>
+</body>
+</html>

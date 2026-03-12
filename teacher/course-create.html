@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create course – Teacher – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .wizard-steps { display: flex; align-items: center; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .wizard-step { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: var(--radius-md); font-weight: 500; font-size: 0.9rem; background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-muted); }
+    .wizard-step.active { background: var(--accent-muted); border-color: var(--accent); color: var(--accent); }
+    .wizard-step.done { background: var(--success-muted); border-color: var(--success); color: var(--success); }
+    .wizard-step .num { width: 24px; height: 24px; border-radius: 50%; background: currentColor; color: var(--bg-primary); display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; opacity: 0.9; }
+    .wizard-step.done .num { background: var(--success); color: #fff; }
+    .wizard-step.active .num { background: var(--accent); color: var(--bg-primary); }
+    .wizard-connector { width: 24px; height: 2px; background: var(--border); }
+    .wizard-panel { display: none; }
+    .wizard-panel.active { display: block; }
+    .lesson-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .lesson-row:last-child { border-bottom: none; }
+    .lesson-drag { color: var(--text-muted); cursor: grab; }
+    .lesson-row input.name { flex: 1; }
+    .lesson-row input.duration { width: 90px; }
+    .lesson-row .btn-remove { padding: 6px 12px; color: var(--error); background: transparent; border: 1px solid var(--error); border-radius: var(--radius-sm); cursor: pointer; font-size: 0.85rem; }
+    .lesson-row .btn-remove:hover { background: rgba(239,68,68,0.15); }
+    .wizard-actions { display: flex; justify-content: space-between; margin-top: 32px; }
+    .preview-summary { background: var(--bg-elevated); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px; }
+    .preview-summary h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 12px; }
+    .preview-summary p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Teacher</span></a>
+      </div>
+      <nav class="panel-nav">
+        <a href="index.html"><span class="icon">📊</span> Dashboard</a>
+        <a href="courses.html"><span class="icon">📚</span> My courses</a>
+        <a href="course-create.html" class="active"><span class="icon">➕</span> Create course</a>
+        <a href="earnings.html"><span class="icon">💰</span> Earnings & payouts</a>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>Create a new course</h1>
+        </div>
+        <div class="panel-header-actions">
+          <a href="courses.html" class="btn btn-ghost">Cancel</a>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="wizard-steps">
+          <div class="wizard-step active" data-step="1">
+            <span class="num">1</span>
+            <span>Basics</span>
+          </div>
+          <div class="wizard-connector"></div>
+          <div class="wizard-step" data-step="2">
+            <span class="num">2</span>
+            <span>Curriculum</span>
+          </div>
+          <div class="wizard-connector"></div>
+          <div class="wizard-step" data-step="3">
+            <span class="num">3</span>
+            <span>Pricing & publish</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Basics -->
+        <div class="wizard-panel active" id="panel-1">
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h2>Course basics</h2>
+            </div>
+            <div style="padding: 24px;">
+              <div class="form-group">
+                <label>Course title</label>
+                <input type="text" id="create-title" class="form-control" placeholder="e.g. Complete Web Development Bootcamp">
+              </div>
+              <div class="form-group">
+                <label>Short description</label>
+                <textarea id="create-desc" class="form-control" rows="3" placeholder="What will students learn? Summarize in 2–3 sentences."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Thumbnail image URL (optional)</label>
+                <input type="url" id="create-thumb" class="form-control" placeholder="https://...">
+              </div>
+              <div class="form-group">
+                <label>Level</label>
+                <select id="create-level" class="form-control" style="max-width: 200px;">
+                  <option>All levels</option>
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <span></span>
+            <button type="button" class="btn btn-primary" id="next-1">Next: Curriculum →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Curriculum -->
+        <div class="wizard-panel" id="panel-2">
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h2>Course curriculum (lessons)</h2>
+              <button type="button" class="btn btn-secondary" id="add-lesson">+ Add lesson</button>
+            </div>
+            <div style="padding: 24px;">
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Add lesson titles and duration. You can upload videos for each lesson after saving.</p>
+              <div id="lessons-list">
+                <div class="lesson-row">
+                  <span class="lesson-drag">⋮⋮</span>
+                  <input type="text" class="form-control name" placeholder="Lesson 1: Introduction">
+                  <input type="text" class="form-control duration" placeholder="12:30">
+                  <button type="button" class="btn-remove" title="Remove">✕</button>
+                </div>
+                <div class="lesson-row">
+                  <span class="lesson-drag">⋮⋮</span>
+                  <input type="text" class="form-control name" placeholder="Lesson 2: Setup & tools">
+                  <input type="text" class="form-control duration" placeholder="8:00">
+                  <button type="button" class="btn-remove" title="Remove">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="btn btn-ghost" id="back-2">← Back</button>
+            <button type="button" class="btn btn-primary" id="next-2">Next: Pricing →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Pricing & Publish -->
+        <div class="wizard-panel" id="panel-3">
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h2>Pricing & publish</h2>
+            </div>
+            <div style="padding: 24px;">
+              <div class="preview-summary">
+                <h4>Course summary</h4>
+                <p id="summary-title"><em>—</em></p>
+                <p id="summary-desc"><em>—</em></p>
+                <p id="summary-lessons"><em>0 lessons</em></p>
+              </div>
+              <div class="form-group">
+                <label>Price ($)</label>
+                <input type="number" id="create-price" class="form-control" placeholder="49.99" step="0.01" min="0" style="max-width: 140px;">
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select id="create-status" class="form-control" style="max-width: 200px;">
+                  <option value="draft">Save as draft</option>
+                  <option value="publish">Publish now</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="btn btn-ghost" id="back-3">← Back</button>
+            <div style="display: flex; gap: 12px;">
+              <button type="button" class="btn btn-secondary" id="save-draft">Save draft</button>
+              <button type="button" class="btn btn-primary" id="publish-btn">Publish course</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    (function() {
+      var step = 1;
+      var steps = document.querySelectorAll('.wizard-step');
+      var panels = document.querySelectorAll('.wizard-panel');
+
+      function goTo(s) {
+        step = s;
+        steps.forEach(function(el) {
+          var n = parseInt(el.getAttribute('data-step'), 10);
+          el.classList.remove('active', 'done');
+          if (n === step) el.classList.add('active');
+          else if (n < step) el.classList.add('done');
+        });
+        panels.forEach(function(p, i) {
+          p.classList.toggle('active', i + 1 === step);
+        });
+        if (step === 3) updateSummary();
+      }
+
+      function updateSummary() {
+        var title = document.getElementById('create-title').value || '—';
+        var desc = document.getElementById('create-desc').value || '—';
+        var rows = document.querySelectorAll('#lessons-list .lesson-row');
+        var count = 0;
+        rows.forEach(function(r) {
+          if (r.querySelector('.name').value.trim()) count++;
+        });
+        document.getElementById('summary-title').textContent = title;
+        document.getElementById('summary-desc').textContent = desc;
+        document.getElementById('summary-lessons').textContent = count + ' lesson(s)';
+      }
+
+      document.getElementById('next-1').onclick = function() {
+        var t = document.getElementById('create-title').value.trim();
+        if (!t) { alert('Please enter a course title.'); return; }
+        goTo(2);
+      };
+      document.getElementById('back-2').onclick = function() { goTo(1); };
+      document.getElementById('next-2').onclick = function() {
+        var rows = document.querySelectorAll('#lessons-list .lesson-row');
+        var hasOne = false;
+        rows.forEach(function(r) {
+          if (r.querySelector('.name').value.trim()) hasOne = true;
+        });
+        if (!hasOne) { alert('Add at least one lesson.'); return; }
+        goTo(3);
+      };
+      document.getElementById('back-3').onclick = function() { goTo(2); };
+
+      document.getElementById('add-lesson').onclick = function() {
+        var list = document.getElementById('lessons-list');
+        var n = list.querySelectorAll('.lesson-row').length + 1;
+        var row = document.createElement('div');
+        row.className = 'lesson-row';
+        row.innerHTML = '<span class="lesson-drag">⋮⋮</span><input type="text" class="form-control name" placeholder="Lesson ' + n + ': Title"><input type="text" class="form-control duration" placeholder="0:00"><button type="button" class="btn-remove" title="Remove">✕</button>';
+        list.appendChild(row);
+        row.querySelector('.btn-remove').onclick = function() { row.remove(); };
+      };
+
+      document.querySelectorAll('#lessons-list .lesson-row .btn-remove').forEach(function(btn) {
+        btn.onclick = function() { btn.closest('.lesson-row').remove(); };
+      });
+
+      document.getElementById('save-draft').onclick = function() {
+        updateSummary();
+        if (window.LearnVaultToast) LearnVaultToast({ title: 'Draft saved', message: 'You can continue editing from My courses.', type: 'success' });
+        window.location.href = 'courses.html';
+      };
+      document.getElementById('publish-btn').onclick = function() {
+        var price = document.getElementById('create-price').value;
+        if (!price || parseFloat(price) < 0) { alert('Please set a valid price.'); return; }
+        updateSummary();
+        if (window.LearnVaultToast) LearnVaultToast({ title: 'Published', message: 'Your course is now live.', type: 'success' });
+        window.location.href = 'courses.html';
+      };
+    })();
+  </script>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

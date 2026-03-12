@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments – Admin – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Admin</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Overview</div>
+          <a href="index.html"><span class="icon">📊</span> Dashboard</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Manage</div>
+          <a href="courses.html"><span class="icon">📚</span> Courses</a>
+          <a href="users.html"><span class="icon">👥</span> Users</a>
+          <a href="teachers.html"><span class="icon">👨‍🏫</span> Teachers</a>
+          <a href="payments.html" class="active"><span class="icon">💳</span> Payments</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">System</div>
+          <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>Payments</h1>
+        </div>
+        <div class="panel-header-actions">
+          <select class="form-control" style="width: 140px;">
+            <option>All status</option>
+            <option>Completed</option>
+            <option>Pending</option>
+            <option>Refunded</option>
+          </select>
+          <input type="text" class="form-control" placeholder="Search by ID or email..." style="width: 220px;">
+          <a href="#" class="btn btn-secondary">Export CSV</a>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="label">Total revenue</div>
+            <div class="value">$12,450</div>
+            <div class="change positive">This month</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Transactions</div>
+            <div class="value">89</div>
+          </div>
+          <div class="stat-card">
+            <div class="label">Avg. order</div>
+            <div class="value">$139.89</div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="table-wrap">
+            <table class="panel-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Course</th>
+                  <th>Method</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#TXN-10892</td>
+                  <td>Mar 12, 2025 14:32</td>
+                  <td>John Doe</td>
+                  <td>Web Development Bootcamp</td>
+                  <td>Card</td>
+                  <td>$49.99</td>
+                  <td><span class="tag tag-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>#TXN-10891</td>
+                  <td>Mar 11, 2025 11:20</td>
+                  <td>Anna Smith</td>
+                  <td>Python for Data Science</td>
+                  <td>PayPal</td>
+                  <td>$39.99</td>
+                  <td><span class="tag tag-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>#TXN-10890</td>
+                  <td>Mar 10, 2025 09:15</td>
+                  <td>Mike Kim</td>
+                  <td>UI/UX Design</td>
+                  <td>Card</td>
+                  <td>$44.99</td>
+                  <td><span class="tag tag-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>#TXN-10889</td>
+                  <td>Mar 10, 2025 08:02</td>
+                  <td>Sara Lee</td>
+                  <td>React Masterclass</td>
+                  <td>Card</td>
+                  <td>$54.99</td>
+                  <td><span class="tag tag-warning">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#TXN-10888</td>
+                  <td>Mar 9, 2025 16:45</td>
+                  <td>Tom Wilson</td>
+                  <td>Data Analytics</td>
+                  <td>Bank</td>
+                  <td>$34.99</td>
+                  <td><span class="tag tag-success">Completed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

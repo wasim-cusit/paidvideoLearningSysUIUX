@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile – Student – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Student</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Learning</div>
+          <a href="index.html"><span class="icon">📚</span> My learning</a>
+          <a href="purchase-history.html"><span class="icon">🧾</span> Purchase history</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Account</div>
+          <a href="profile.html" class="active"><span class="icon">👤</span> Profile</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>Profile</h1>
+        </div>
+        <div class="panel-header-actions">
+          <button class="btn btn-primary" id="save-profile">Save changes</button>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h2>Personal info</h2>
+          </div>
+          <div style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 24px;">
+              <div class="panel-user-avatar" style="width: 64px; height: 64px; font-size: 1.5rem;">JD</div>
+              <div>
+                <button class="btn btn-secondary">Change photo</button>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">JPG or PNG, max 2MB</p>
+              </div>
+            </div>
+            <div class="card-row">
+              <div class="form-group" style="flex: 1;">
+                <label>First name</label>
+                <input type="text" class="form-control" value="John">
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label>Last name</label>
+                <input type="text" class="form-control" value="Doe">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" value="john@example.com">
+            </div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h2>Password</h2>
+          </div>
+          <div style="padding: 24px;">
+            <div class="form-group">
+              <label>Current password</label>
+              <input type="password" class="form-control" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+              <label>New password</label>
+              <input type="password" class="form-control" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+              <label>Confirm new password</label>
+              <input type="password" class="form-control" placeholder="••••••••">
+            </div>
+            <button class="btn btn-secondary">Update password</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    document.getElementById('save-profile').addEventListener('click', function() {
+      if (window.LearnVaultToast) LearnVaultToast({ title: 'Saved', message: 'Profile updated.', type: 'success' });
+    });
+  </script>
+</body>
+</html>

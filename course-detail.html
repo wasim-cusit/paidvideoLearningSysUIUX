@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course – LearnVault</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .course-detail-hero { padding: 32px 0 24px; }
+    .course-detail-hero h1 { font-family: var(--font-heading); font-size: 1.85rem; margin-bottom: 8px; }
+    .course-detail-hero .meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .course-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; padding-bottom: 80px; align-items: start; }
+    @media (max-width: 900px) { .course-layout { grid-template-columns: 1fr; } }
+    .lesson-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .lesson-item { display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+    .lesson-item:last-child { border-bottom: none; }
+    .lesson-item:hover { background: var(--bg-elevated); }
+    .lesson-item.playing { background: var(--accent-muted); border-left: 3px solid var(--accent); }
+    .lesson-num { width: 28px; height: 28px; background: var(--bg-elevated); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0; }
+    .lesson-item.playing .lesson-num { background: var(--accent); color: var(--bg-primary); }
+    .lesson-title { flex: 1; font-weight: 500; font-size: 0.95rem; }
+    .lesson-duration { color: var(--text-muted); font-size: 0.85rem; }
+    .purchase-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; position: sticky; top: calc(var(--header-height) + 24px); }
+    .purchase-box .price { font-size: 1.75rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .purchase-box .price-note { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px; }
+    .purchase-box .btn-primary { width: 100%; padding: 14px; }
+    .purchase-box ul { list-style: none; margin-bottom: 20px; }
+    .purchase-box li { padding: 8px 0; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+    .purchase-box li::before { content: '✓'; color: var(--success); font-weight: 700; }
+    /* Locked state – student course locking */
+    .video-container { position: relative; }
+    .video-lock-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; border-radius: var(--radius-lg); }
+    .video-lock-overlay .lock-icon { font-size: 3rem; opacity: 0.9; }
+    .video-lock-overlay h3 { font-family: var(--font-heading); font-size: 1.25rem; }
+    .video-lock-overlay p { color: var(--text-secondary); text-align: center; max-width: 280px; }
+    .lesson-item.locked { opacity: 0.7; cursor: not-allowed; pointer-events: none; }
+    .lesson-item.locked .lesson-title { color: var(--text-muted); }
+    .lesson-item .lesson-lock { margin-left: 8px; font-size: 0.9rem; color: var(--text-muted); }
+    .purchase-box.unlocked { border-color: var(--success); }
+    .purchase-box.unlocked .unlocked-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--success-muted); color: var(--success); padding: 8px 14px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; margin-bottom: 16px; }
+    .purchase-box .buy-actions { display: none; }
+    .purchase-box .buy-actions { }
+    .purchase-box .unlocked-actions { display: none; }
+    .purchase-box.unlocked .buy-actions { display: none !important; }
+    .purchase-box.unlocked .unlocked-actions { display: block !important; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Learn<span>Vault</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost">Log in</a>
+        <a href="signup.html" class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="course-detail-hero">
+        <h1 id="course-title">Complete Web Development Bootcamp</h1>
+        <p class="meta" id="course-meta">24 lessons · 12 hours · All levels</p>
+      </section>
+
+      <div class="course-layout">
+        <div>
+          <div class="video-container mb-2" id="video-wrap">
+            <video id="player" controls poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop">
+              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-lock-overlay" id="video-lock-overlay" style="display: none;">
+              <span class="lock-icon">🔒</span>
+              <h3>This course is locked</h3>
+              <p>Purchase once to unlock all lessons and get lifetime access.</p>
+              <a href="#" id="unlock-cta" class="btn btn-primary">Purchase to unlock</a>
+            </div>
+          </div>
+          <p class="section-subtitle" id="course-desc">Learn HTML, CSS, JavaScript, and modern frameworks. Build real projects and deploy them. This course includes lifetime access and downloadable resources.</p>
+
+          <h3 class="section-title mt-2">Course content</h3>
+          <div class="lesson-list" id="lesson-list">
+            <div class="lesson-item playing" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" data-lockable>
+              <span class="lesson-num">1</span>
+              <span class="lesson-title">Introduction & setup<span class="lesson-lock">🔒 Locked</span></span>
+              <span class="lesson-duration">12:30</span>
+            </div>
+            <div class="lesson-item" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" data-lockable>
+              <span class="lesson-num">2</span>
+              <span class="lesson-title">HTML fundamentals<span class="lesson-lock">🔒 Locked</span></span>
+              <span class="lesson-duration">18:45</span>
+            </div>
+            <div class="lesson-item" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" data-lockable>
+              <span class="lesson-num">3</span>
+              <span class="lesson-title">CSS layout & styling<span class="lesson-lock">🔒 Locked</span></span>
+              <span class="lesson-duration">22:10</span>
+            </div>
+            <div class="lesson-item" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" data-lockable>
+              <span class="lesson-num">4</span>
+              <span class="lesson-title">JavaScript basics<span class="lesson-lock">🔒 Locked</span></span>
+              <span class="lesson-duration">25:00</span>
+            </div>
+            <div class="lesson-item" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" data-lockable>
+              <span class="lesson-num">5</span>
+              <span class="lesson-title">Building your first project<span class="lesson-lock">🔒 Locked</span></span>
+              <span class="lesson-duration">30:15</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="purchase-box" id="purchase-box">
+          <div class="unlocked-badge" id="unlocked-badge" style="display: none;">✓ You have access</div>
+          <div class="buy-actions" id="buy-actions">
+            <div class="price" id="course-price">$49.99</div>
+            <p class="price-note">One-time payment · Lifetime access</p>
+            <ul>
+              <li>Full HD video lessons</li>
+              <li>Downloadable resources</li>
+              <li>Certificate of completion</li>
+              <li>Q&A support</li>
+            </ul>
+            <a href="checkout.html?course=1" class="btn btn-primary" id="buy-now-btn">Buy now</a>
+            <p class="footer-link mt-1" style="font-size: 0.85rem; color: var(--text-muted);">Secure payment · Refund within 30 days</p>
+          </div>
+          <div class="unlocked-actions" id="unlocked-actions">
+            <p class="price-note">You own this course. Watch anytime, anywhere.</p>
+            <a href="dashboard.html" class="btn btn-secondary" style="width: 100%;">My Learning</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+  <script src="js/owned-courses.js"></script>
+  <script>
+    (function() {
+      var params = new URLSearchParams(location.search);
+      var id = params.get('id') || '1';
+      var owned = window.LearnVaultOwned && window.LearnVaultOwned.has(id);
+      var courses = {
+        '1': { title: 'Complete Web Development Bootcamp', meta: '24 lessons · 12 hours · All levels', price: '$49.99', desc: 'Learn HTML, CSS, JavaScript, and modern frameworks. Build real projects and deploy them.' },
+        '2': { title: 'Python for Data Science & ML', meta: '18 lessons · 10 hours · Beginner', price: '$39.99', desc: 'From Python basics to machine learning with pandas, NumPy, and scikit-learn.' },
+        '3': { title: 'UI/UX Design from Zero to Hero', meta: '20 lessons · 8 hours · All levels', price: '$44.99', desc: 'Design beautiful interfaces and prototypes with Figma and user research.' }
+      };
+      var c = courses[id] || courses['1'];
+      document.getElementById('course-title').textContent = c.title;
+      document.getElementById('course-meta').textContent = c.meta;
+      document.getElementById('course-price').textContent = c.price;
+      document.getElementById('course-desc').textContent = c.desc;
+      var buyBtn = document.getElementById('buy-now-btn');
+      if (buyBtn) buyBtn.href = 'checkout.html?course=' + id;
+      var unlockCta = document.getElementById('unlock-cta');
+      if (unlockCta) unlockCta.href = 'checkout.html?course=' + id;
+
+      if (owned) {
+        document.getElementById('purchase-box').classList.add('unlocked');
+        document.getElementById('unlocked-badge').style.display = 'inline-flex';
+        document.getElementById('video-lock-overlay').style.display = 'none';
+        document.querySelectorAll('#lesson-list .lesson-item[data-lockable]').forEach(function(el) {
+          el.classList.remove('locked');
+          var lockSpan = el.querySelector('.lesson-lock');
+          if (lockSpan) lockSpan.remove();
+        });
+      } else {
+        document.getElementById('video-lock-overlay').style.display = 'flex';
+        document.querySelectorAll('#lesson-list .lesson-item[data-lockable]').forEach(function(el) {
+          el.classList.add('locked');
+        });
+        document.getElementById('player').pause();
+      }
+
+      var player = document.getElementById('player');
+      var items = document.querySelectorAll('#lesson-list .lesson-item');
+      items.forEach(function(item) {
+        if (item.classList.contains('locked')) return;
+        item.addEventListener('click', function() {
+          items.forEach(function(i) { i.classList.remove('playing'); });
+          this.classList.add('playing');
+          var src = this.getAttribute('data-video');
+          if (src) {
+            player.src = src;
+            player.play();
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

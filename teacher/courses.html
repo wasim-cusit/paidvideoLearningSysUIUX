@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My courses – Teacher – LearnVault</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="panel-wrap">
+    <aside class="panel-sidebar">
+      <div class="panel-sidebar-header">
+        <a href="index.html" class="logo">Learn<span>Vault</span> <span class="badge">Teacher</span></a>
+      </div>
+      <nav class="panel-nav">
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Overview</div>
+          <a href="index.html"><span class="icon">📊</span> Dashboard</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Teaching</div>
+          <a href="courses.html" class="active"><span class="icon">📚</span> My courses</a>
+          <a href="course-create.html"><span class="icon">➕</span> Create course</a>
+        </div>
+        <div class="panel-nav-section">
+          <div class="panel-nav-section-title">Earnings</div>
+          <a href="earnings.html"><span class="icon">💰</span> Earnings & payouts</a>
+        </div>
+      </nav>
+      <div class="panel-sidebar-footer">
+        <a href="../index.html">← Back to site</a>
+      </div>
+    </aside>
+    <div class="panel-backdrop" aria-hidden="true"></div>
+    <main class="panel-main">
+      <header class="panel-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="panel-menu-btn" type="button" data-panel-menu aria-label="Open menu">☰</button>
+          <h1>My courses</h1>
+        </div>
+        <div class="panel-header-actions">
+          <a href="course-create.html" class="btn btn-primary">+ Create course</a>
+        </div>
+      </header>
+      <div class="panel-content">
+        <div class="course-grid">
+          <a href="../course-detail.html?id=1" class="course-card">
+            <div class="course-card-thumb">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=225&fit=crop" alt="Web Dev">
+              <span class="badge">Published</span>
+            </div>
+            <div class="course-card-body">
+              <h3 class="course-card-title">Complete Web Development Bootcamp</h3>
+              <div class="course-card-meta">312 students · 24 lessons</div>
+              <div class="course-card-footer">
+                <span class="course-card-price">$15,576 earned</span>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="course-card">
+            <div class="course-card-thumb">
+              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop" alt="React">
+              <span class="badge">Published</span>
+            </div>
+            <div class="course-card-body">
+              <h3 class="course-card-title">React & Next.js Masterclass</h3>
+              <div class="course-card-meta">89 students · 22 lessons</div>
+              <div class="course-card-footer">
+                <span class="course-card-price">$4,894 earned</span>
+              </div>
+            </div>
+          </a>
+          <a href="course-create.html" class="course-card" style="border-style: dashed; border-color: var(--text-muted);">
+            <div class="course-card-thumb" style="background: var(--bg-elevated); display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 3rem; opacity: 0.5;">+</span>
+            </div>
+            <div class="course-card-body">
+              <h3 class="course-card-title" style="color: var(--text-muted);">Create new course</h3>
+              <div class="course-card-meta">Add title, lessons & price</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/panel.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
