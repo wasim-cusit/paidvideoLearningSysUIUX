@@ -6,22 +6,14 @@
   <title>Sign up – LearnVault</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header class="app-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">Learn<span>Vault</span></a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="courses.html">Courses</a>
-      </nav>
-      <div class="header-actions">
-        <a href="login.html" class="btn btn-ghost">Log in</a>
-      </div>
+<body class="auth-body">
+  <div class="auth-screen">
+    <div class="auth-brand">
+      <a href="index.html" class="auth-logo">Learn<span>Vault</span></a>
+      <p class="auth-tagline">Start learning today.<br>Pay only for what you need.</p>
+      <div class="auth-decoration" aria-hidden="true"></div>
     </div>
-  </header>
-
-  <main>
-    <section class="auth-page">
+    <div class="auth-form-panel">
       <div class="auth-card">
         <h1>Create your account</h1>
         <p class="subtitle">Free to join. Pay only for the courses you want.</p>
@@ -38,12 +30,13 @@
             <label for="password">Password</label>
             <input type="password" id="password" class="form-control" placeholder="At least 8 characters" required minlength="8">
           </div>
-          <button type="submit" class="btn btn-primary">Create account</button>
+          <button type="submit" class="btn btn-primary btn-block">Create account</button>
         </form>
-        <p class="footer-link">Already have an account? <a href="login.html">Log in</a></p>
+        <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
       </div>
-    </section>
-  </main>
+      <p class="auth-back"><a href="index.html">← Back to home</a></p>
+    </div>
+  </div>
   <script src="js/main.js"></script>
   <script>
     document.getElementById('signup-form').onsubmit = function() {
