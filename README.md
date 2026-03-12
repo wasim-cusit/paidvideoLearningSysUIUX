@@ -87,4 +87,27 @@ paidvideoLearningSysUIUX/
 └── README.md
 ```
 
+## Publish to GitHub
+
+The project is already a Git repo (branch `main`). To push to GitHub:
+
+1. **Create a new repository** on [GitHub](https://github.com/new):
+   - Name it e.g. `paidvideoLearningSysUIUX` (or any name you like).
+   - Do **not** add a README, .gitignore, or license (this project already has them).
+
+2. **Add the remote and push** (replace `YOUR_USERNAME` and `YOUR_REPO` with your GitHub username and repo name):
+
+```bash
+cd c:\xampp\htdocs\paidvideoLearningSysUIUX
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
+```
+
+If you use SSH:
+
+```bash
+git remote add origin git@github.com:YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
+```
+
 Enjoy building your paid video learning platform.
